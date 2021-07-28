@@ -1,13 +1,14 @@
-FROM nginx:1.11
+FROM nginx:1.21
 
-MAINTAINER David Galoyan <davojan@gmail.com>
+MAINTAINER andy <andycrusoe@gmail.com>
 
-ENV NGX_CACHE_PURGE_VERSION=2.4.1
+ENV NGX_CACHE_PURGE_VERSION=2.5.1
 
 # Install basic packages and build tools
 RUN apt-get update && \
     apt-get install --no-install-recommends --no-install-suggests -y \
       wget \
+      zlib1g-dev \
       build-essential \
       libssl-dev \
       libpcre3 \
@@ -19,7 +20,7 @@ RUN apt-get update && \
 RUN NGINX_VERSION=`nginx -V 2>&1 | grep "nginx version" | awk -F/ '{ print $2}'` && \
     cd /tmp && \
     wget http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz && \
-    wget https://github.com/nginx-modules/ngx_cache_purge/archive/$NGX_CACHE_PURGE_VERSION.tar.gz \
+    wget https://github.com/nginx-modules/ngx_cache_purge/archive/refs/tags/$NGX_CACHE_PURGE_VERSION.tar.gz \
          -O ngx_cache_purge-$NGX_CACHE_PURGE_VERSION.tar.gz && \
     tar -xf nginx-$NGINX_VERSION.tar.gz && \
     mv nginx-$NGINX_VERSION nginx && \
