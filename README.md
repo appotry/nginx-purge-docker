@@ -1,4 +1,4 @@
-## [配置使用参考[(https://hub.docker.com/_/nginx)
+## [配置使用参考](https://hub.docker.com/_/nginx)
 
 
 
