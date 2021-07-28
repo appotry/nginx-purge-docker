@@ -1,3 +1,7 @@
+## [配置使用参考[(https://hub.docker.com/_/nginx)
+
+
+
 # Nginx Compiled with ``ngx_cache_purge`` Module
 
 This image is based on the official ``nginx:mainline`` ([see on Dockehub](https://hub.docker.com/_/nginx/)) and recompiled with the same configure options from vanilla nginx sources with addition of ``--add-module=ngx-cache-purge``.
