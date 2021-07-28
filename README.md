@@ -91,6 +91,24 @@ uwsgi_cache_purge
 
 Sets area and key used for purging selected pages from `uWSGI`'s cache.
 
+## docker compose
+```
+  nginxweb:
+    image: bloodstar/nginx-purge
+    container_name: "nginxweb"
+    hostname: nginxweb
+    ports:
+      - "80:80"
+      - "443:443"
+    restart: always
+    volumes:
+      # ying she zhu ji wang zhan mu lu
+      - ${USERDIR}/nginx/conf.d:/etc/nginx/conf.d:ro
+      - ${USERDIR}/nginxproxy/certs:/etc/nginx/certs:ro
+      - ${USERDIR}/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+
+```
+
 
 Sample configuration (same location syntax)
 ===========================================
