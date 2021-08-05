@@ -1,5 +1,7 @@
 ## [配置使用参考](https://hub.docker.com/_/nginx)
 
+ARM64, ARMV7, AMD64 全平台支持添加
+
 # 增加 CA 证书 支持
 在 docker compose 中映射ca文件
 ```
