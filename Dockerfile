@@ -1,4 +1,4 @@
-FROM nginx:1.21
+FROM nginx:1.21.1
 
 MAINTAINER andy <andycrusoe@gmail.com>
 
@@ -26,10 +26,9 @@ RUN apt-get update && \
 # download and extract sources
 RUN NGINX_VERSION=`nginx -V 2>&1 | grep "nginx version" | awk -F/ '{ print $2}'` && \
     cd /tmp && \
-    echo "get http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz" && \
-    wget http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz && \
-    echo "get https://github.com/nginx-modules/ngx_cache_purge/archive/refs/tags/$NGX_CACHE_PURGE_VERSION.tar.gz" && \
-    wget https://github.com/nginx-modules/ngx_cache_purge/archive/refs/tags/$NGX_CACHE_PURGE_VERSION.tar.gz \
+    #wget http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz && \
+    wget http://nginx.org/download/nginx-1.21.1.tar.gz && \
+    wget https://github.com/nginx-modules/ngx_cache_purge/archive/refs/tags/$NGX_CACHE_PURGE_VERSION.tar.gz && \
          -O ngx_cache_purge-$NGX_CACHE_PURGE_VERSION.tar.gz 
     #tar -xf nginx-$NGINX_VERSION.tar.gz && \
     #mv nginx-$NGINX_VERSION nginx && \
