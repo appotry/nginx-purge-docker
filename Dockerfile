@@ -7,10 +7,15 @@ LABEL maintainer="andy"
 ENV NGX_CACHE_PURGE_VERSION=2.5.1
 ENV NGX_BROTLI_VERSION=v1.0.0rc
 
+# for local build
+#ENV http_proxy http://192.168.0.105:1089
+#ENV https_proxy http://192.168.0.105:1089
+
 # Install basic packages and build tools
 RUN apt-get update && \
     apt-get install --no-install-recommends --no-install-suggests -y \
       wget \
+      git \
       zlib1g-dev \
       build-essential \
       libssl-dev \
@@ -28,18 +33,19 @@ RUN NGINX_VERSION=`nginx -V 2>&1 | grep "nginx version" | awk -F/ '{ print $2}'`
     wget http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz && \
     wget https://github.com/nginx-modules/ngx_cache_purge/archive/refs/tags/$NGX_CACHE_PURGE_VERSION.tar.gz  \
          -O ngx_cache_purge-$NGX_CACHE_PURGE_VERSION.tar.gz && \
-    wget https://github.com/google/ngx_brotli/archive/refs/tags/$NGX_BROTLI_VERSION.tar.gz \
-         -O ngx_brotli-$NGX_BROTLI_VERSION.tar.gz && \
     tar -xf nginx-$NGINX_VERSION.tar.gz && \
     mv nginx-$NGINX_VERSION nginx && \
     rm nginx-$NGINX_VERSION.tar.gz && \
     tar -xf ngx_cache_purge-$NGX_CACHE_PURGE_VERSION.tar.gz && \
     mv ngx_cache_purge-$NGX_CACHE_PURGE_VERSION ngx_cache_purge && \
-    rm ngx_cache_purge-$NGX_CACHE_PURGE_VERSION.tar.gz && \
-    tar -xf ngx_brotli-$NGX_BROTLI_VERSION.tar.gz && \
-    mv ngx_brotli-$NGX_BROTLI_VERSION ngx_brotli && \
-    rm ngx_brotli-$NGX_BROTLI_VERSION.tar.gz
-    
+    rm ngx_cache_purge-$NGX_CACHE_PURGE_VERSION.tar.gz
+
+# Reuse same cli arguments as the nginx:alpine image used to build
+RUN cd /tmp && \
+    git clone https://github.com/google/ngx_brotli.git && \
+    #git clone https://github.com/nginx-modules/ngx_cache_purge.git && \
+    cd /tmp/ngx_brotli && git submodule update --init
+       
 # configure and build
 RUN cd /tmp/nginx && \
     BASE_CONFIGURE_ARGS=`nginx -V 2>&1 | grep "configure arguments" | cut -d " " -f 3-` && \
@@ -47,3 +53,5 @@ RUN cd /tmp/nginx && \
     make && make install && \
     rm -rf /tmp/nginx*
     
+ENV http_proxy ""
+ENV https_proxy ""
