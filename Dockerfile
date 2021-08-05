@@ -14,7 +14,10 @@ RUN apt-get update && \
       build-essential \
       libssl-dev \
       libpcre3 \
-      libpcre3-dev && \
+      libpcre3-dev  \
+      apache2-utils \
+      ca-certificates \
+      inetutils-ping && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -22,7 +25,7 @@ RUN apt-get update && \
 RUN NGINX_VERSION=`nginx -V 2>&1 | grep "nginx version" | awk -F/ '{ print $2}'` && \
     cd /tmp && \
     wget http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz && \
-    wget https://github.com/nginx-modules/ngx_cache_purge/archive/refs/tags/$NGX_CACHE_PURGE_VERSION.tar.gz && \
+    wget https://github.com/nginx-modules/ngx_cache_purge/archive/refs/tags/$NGX_CACHE_PURGE_VERSION.tar.gz  \
          -O ngx_cache_purge-$NGX_CACHE_PURGE_VERSION.tar.gz && \
     tar -xf nginx-$NGINX_VERSION.tar.gz && \
     mv nginx-$NGINX_VERSION nginx && \
