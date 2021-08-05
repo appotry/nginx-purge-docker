@@ -14,10 +14,7 @@ RUN apt-get update && \
       build-essential \
       libssl-dev \
       libpcre3 \
-      libpcre3-dev \
-      apache2-utils \
-      ca-certificates \
-      inetutils-ping && \
+      libpcre3-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
