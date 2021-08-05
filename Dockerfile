@@ -28,13 +28,13 @@ RUN NGINX_VERSION=`nginx -V 2>&1 | grep "nginx version" | awk -F/ '{ print $2}'`
     cd /tmp && \
     wget http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz && \
     wget https://github.com/nginx-modules/ngx_cache_purge/archive/refs/tags/$NGX_CACHE_PURGE_VERSION.tar.gz \
-         -O ngx_cache_purge-$NGX_CACHE_PURGE_VERSION.tar.gz && \
-    tar -xf nginx-$NGINX_VERSION.tar.gz && \
-    mv nginx-$NGINX_VERSION nginx && \
-    rm nginx-$NGINX_VERSION.tar.gz && \
-    tar -xf ngx_cache_purge-$NGX_CACHE_PURGE_VERSION.tar.gz && \
-    mv ngx_cache_purge-$NGX_CACHE_PURGE_VERSION ngx_cache_purge && \
-    rm ngx_cache_purge-$NGX_CACHE_PURGE_VERSION.tar.gz
+         -O ngx_cache_purge-$NGX_CACHE_PURGE_VERSION.tar.gz 
+    #tar -xf nginx-$NGINX_VERSION.tar.gz && \
+    #mv nginx-$NGINX_VERSION nginx && \
+    #rm nginx-$NGINX_VERSION.tar.gz && \
+    #tar -xf ngx_cache_purge-$NGX_CACHE_PURGE_VERSION.tar.gz && \
+    #mv ngx_cache_purge-$NGX_CACHE_PURGE_VERSION ngx_cache_purge && \
+    #rm ngx_cache_purge-$NGX_CACHE_PURGE_VERSION.tar.gz
 
 # configure and build
 RUN cd /tmp/nginx && \
