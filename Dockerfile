@@ -2,6 +2,8 @@ FROM nginx:1.21
 
 MAINTAINER andy <andycrusoe@gmail.com>
 
+# set label
+LABEL maintainer="andy"
 ENV NGX_CACHE_PURGE_VERSION=2.5.1
 
 # Install basic packages and build tools
