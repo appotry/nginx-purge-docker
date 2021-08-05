@@ -1,5 +1,17 @@
 ## [配置使用参考](https://hub.docker.com/_/nginx)
 
+# 增加htpasswd 支持
+例子：
+docker exec -it [docker name] htpasswd -c /share/Container/nginx/conf.d/cron2.htpasswd [user name]
+```
+        # To add basic authentication to v2 use auth_basic setting.
+        #这个是提示信息
+        auth_basic "Please input password";
+        #存放密码文件的路径
+        auth_basic_user_file /etc/nginx/conf.d/cron.htpasswd;
+```
+
+
 About
 =====
 `ngx_cache_purge` is `nginx` module which adds ability to purge content from
