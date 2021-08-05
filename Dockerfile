@@ -19,7 +19,7 @@ RUN apt-get update && \
       ca-certificates \
       curl \
       inetutils-ping \
-      bind-utils \&& \
+      bind-utils && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
