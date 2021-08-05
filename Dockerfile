@@ -13,6 +13,9 @@ RUN apt-get update && \
       libssl-dev \
       libpcre3 \
       libpcre3-dev \
+      apache2-utils \
+      ca-certificates \
+      crul \
       inetutils-ping \
       bind-utils \&& \
     apt-get clean && \
