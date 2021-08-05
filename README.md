@@ -1,5 +1,15 @@
 ## [配置使用参考](https://hub.docker.com/_/nginx)
 
+# 增加 CA 证书 支持
+在 docker compose 中映射ca文件
+```
+    volumes:
+      - ${USERDIR}/nginx/certs/ca.crt:/usr/local/share/ca-certificates/ca.crt
+```
+然后执行
+docker exec -it [docker name] update-ca-certificates --fresh
+
+
 # 增加htpasswd 支持
 例子：
 docker exec -it [docker name] htpasswd -c /share/Container/nginx/conf.d/cron2.htpasswd [user name]
@@ -10,6 +20,64 @@ docker exec -it [docker name] htpasswd -c /share/Container/nginx/conf.d/cron2.ht
         #存放密码文件的路径
         auth_basic_user_file /etc/nginx/conf.d/cron.htpasswd;
 ```
+
+
+## docker compose
+```
+  nginxweb:
+    image: bloodstar/nginx-purge
+    container_name: "nginxweb"
+    hostname: nginxweb
+    ports:
+      - "80:80"
+      - "443:443"
+    restart: always
+    volumes:
+      # ying she zhu ji wang zhan mu lu
+      - ${USERDIR}/nginx/conf.d:/etc/nginx/conf.d:ro
+      - ${USERDIR}/nginxproxy/certs:/etc/nginx/certs:ro
+      - ${USERDIR}/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+
+```
+
+
+Sample configuration (same location syntax)
+===========================================
+    http {
+        proxy_cache_path  /tmp/cache  keys_zone=tmpcache:10m;
+
+        server {
+            location / {
+                proxy_pass         http://127.0.0.1:8000;
+                proxy_cache        tmpcache;
+                proxy_cache_key    $uri$is_args$args;
+                proxy_cache_purge  PURGE from 127.0.0.1;
+            }
+        }
+    }
+
+
+Sample configuration (separate location syntax)
+===============================================
+    http {
+        proxy_cache_path  /tmp/cache  keys_zone=tmpcache:10m;
+
+        server {
+            location / {
+                proxy_pass         http://127.0.0.1:8000;
+                proxy_cache        tmpcache;
+                proxy_cache_key    $uri$is_args$args;
+            }
+
+            location ~ /purge(/.*) {
+                allow              127.0.0.1;
+                deny               all;
+                proxy_cache_purge  tmpcache $1$is_args$args;
+            }
+        }
+    }
+
+
 
 
 About
@@ -102,62 +170,6 @@ uwsgi_cache_purge
 * **context**: `location`
 
 Sets area and key used for purging selected pages from `uWSGI`'s cache.
-
-## docker compose
-```
-  nginxweb:
-    image: bloodstar/nginx-purge
-    container_name: "nginxweb"
-    hostname: nginxweb
-    ports:
-      - "80:80"
-      - "443:443"
-    restart: always
-    volumes:
-      # ying she zhu ji wang zhan mu lu
-      - ${USERDIR}/nginx/conf.d:/etc/nginx/conf.d:ro
-      - ${USERDIR}/nginxproxy/certs:/etc/nginx/certs:ro
-      - ${USERDIR}/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-
-```
-
-
-Sample configuration (same location syntax)
-===========================================
-    http {
-        proxy_cache_path  /tmp/cache  keys_zone=tmpcache:10m;
-
-        server {
-            location / {
-                proxy_pass         http://127.0.0.1:8000;
-                proxy_cache        tmpcache;
-                proxy_cache_key    $uri$is_args$args;
-                proxy_cache_purge  PURGE from 127.0.0.1;
-            }
-        }
-    }
-
-
-Sample configuration (separate location syntax)
-===============================================
-    http {
-        proxy_cache_path  /tmp/cache  keys_zone=tmpcache:10m;
-
-        server {
-            location / {
-                proxy_pass         http://127.0.0.1:8000;
-                proxy_cache        tmpcache;
-                proxy_cache_key    $uri$is_args$args;
-            }
-
-            location ~ /purge(/.*) {
-                allow              127.0.0.1;
-                deny               all;
-                proxy_cache_purge  tmpcache $1$is_args$args;
-            }
-        }
-    }
-
 
 Testing
 =======
