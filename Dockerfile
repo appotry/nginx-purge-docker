@@ -15,7 +15,7 @@ RUN apt-get update && \
       libpcre3-dev \
       apache2-utils \
       ca-certificates \
-      crul \
+      curl \
       inetutils-ping \
       bind-utils \&& \
     apt-get clean && \
