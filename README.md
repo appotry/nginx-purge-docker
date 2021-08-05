@@ -14,7 +14,7 @@ docker exec -it [docker name] update-ca-certificates --fresh
 
 # 增加htpasswd 支持
 例子：
-docker exec -it [docker name] htpasswd -c /share/Container/nginx/conf.d/cron2.htpasswd [user name]
+docker exec -it [docker name] htpasswd -c /[path to nginx]/conf.d/cron2.htpasswd [user name]
 ```
         # To add basic authentication to v2 use auth_basic setting.
         #这个是提示信息
