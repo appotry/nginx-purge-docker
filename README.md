@@ -2,6 +2,37 @@
 
 ARM64, ARMV7, AMD64 全平台支持添加
 
+# 增加brotli 支持
+在nginx配置文件中增加
+```yaml
+    brotli on;
+    brotli_comp_level 6; 
+    brotli_types
+        text/css
+        text/plain
+        text/javascript
+        application/javascript
+        application/json
+        application/x-javascript
+        application/xml
+        application/xml+rss
+        application/xhtml+xml
+        application/x-font-ttf
+        application/x-font-opentype
+        application/vnd.ms-fontobject
+        image/svg+xml
+        image/x-icon
+        application/rss+xml
+        application/atom_xml
+        image/jpeg
+        image/gif
+        image/png
+        image/icon
+        image/bmp
+        image/jpg;
+
+```
+
 # 增加 CA 证书 支持
 在 docker compose 中映射ca文件
 ```
