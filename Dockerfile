@@ -1,4 +1,4 @@
-FROM nginx:1.21 as builder
+FROM nginx:stable as builder
 
 MAINTAINER andy <andycrusoe@gmail.com>
 
