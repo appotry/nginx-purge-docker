@@ -45,8 +45,12 @@ RUN NGINX_VERSION=`nginx -V 2>&1 | grep "nginx version" | awk -F/ '{ print $2}'`
 # Reuse same cli arguments as the nginx:alpine image used to build
 RUN cd /tmp && \
     git clone https://github.com/google/ngx_brotli.git && \
-    git clone https://github.com/ADD-SP/ngx_waf.git && \
     cd /tmp/ngx_brotli && git submodule update --init
+    
+RUN cd /tmp && \
+    git clone https://github.com/ADD-SP/ngx_waf.git && \
+    cd /tmp/ngx_waf && git submodule update --init
+   
        
 # configure and build
 RUN cd /tmp/nginx && \
