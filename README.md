@@ -2,6 +2,19 @@
 
 ARM64, ARMV7, AMD64 全平台支持添加
 
+# 增加方便且高性能的 Nginx 防火墙模块 [ngx_waf](https://github.com/ADD-SP/ngx_waf)
+```nginx
+waf on; # 是否启用模块
+waf_rule_path /www/server/nginx/src/ngx_waf/assets/rules/; # 模块规则
+waf_mode STD !CC; # 启用普通模式并关闭CC防护
+waf_cache capacity=50; # 缓存配置
+waf_under_attack on uri=/under-attack.html; # 配置5秒盾
+```
+把测试用的5秒盾html文件复制到你的站点的根目录下
+```
+wget https://raw.githubusercontent.com/ADD-SP/ngx_waf/master/assets/under-attack.html -o /www/wwwroot/rn.vsvs.xyz
+```
+
 # 增加brotli 支持
 在nginx配置文件中增加
 ```yaml
