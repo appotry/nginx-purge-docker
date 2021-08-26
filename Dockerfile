@@ -44,12 +44,13 @@ RUN NGINX_VERSION=`nginx -V 2>&1 | grep "nginx version" | awk -F/ '{ print $2}'`
 RUN cd /tmp && \
     git clone https://github.com/google/ngx_brotli.git && \
     #git clone https://github.com/nginx-modules/ngx_cache_purge.git && \
+    git clone https://github.com/ADD-SP/ngx_waf.git && \
     cd /tmp/ngx_brotli && git submodule update --init
        
 # configure and build
 RUN cd /tmp/nginx && \
     BASE_CONFIGURE_ARGS=`nginx -V 2>&1 | grep "configure arguments" | cut -d " " -f 3-` && \
-    /bin/sh -c "./configure ${BASE_CONFIGURE_ARGS} --add-module=/tmp/ngx_cache_purge --add-module=/tmp/ngx_brotli" && \
+    /bin/sh -c "./configure ${BASE_CONFIGURE_ARGS} --add-module=/tmp/ngx_cache_purge --add-module=/tmp/ngx_brotli --add-module=/tmp/ngx_waf" && \
     make && make install && \
     rm -rf /tmp/nginx*
     
