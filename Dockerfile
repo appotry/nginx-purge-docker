@@ -40,10 +40,11 @@ RUN NGINX_VERSION=`nginx -V 2>&1 | grep "nginx version" | awk -F/ '{ print $2}'`
     mv ngx_cache_purge-$NGX_CACHE_PURGE_VERSION ngx_cache_purge && \
     rm ngx_cache_purge-$NGX_CACHE_PURGE_VERSION.tar.gz
 
+#git clone https://github.com/nginx-modules/ngx_cache_purge.git && \
+
 # Reuse same cli arguments as the nginx:alpine image used to build
 RUN cd /tmp && \
     git clone https://github.com/google/ngx_brotli.git && \
-    #git clone https://github.com/nginx-modules/ngx_cache_purge.git && \
     git clone https://github.com/ADD-SP/ngx_waf.git && \
     cd /tmp/ngx_brotli && git submodule update --init
        
