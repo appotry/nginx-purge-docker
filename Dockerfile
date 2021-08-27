@@ -60,7 +60,7 @@ RUN cd /tmp && \
     ./configure --prefix=/tmp/nginx/libsodium --with-pic && \
     make -j$(nproc) && make check -j $(nproc) && make install && \
     export LIB_SODIUM=/tmp/nginx/libsodium && \
-    cp libinjection /tmp/ngx_waf/inc/libinjection -r && \
+    cp /tmp/libinjection /tmp/ngx_waf/inc/libinjection -r && \
     cp /tmp/uthash/src/* /usr/include/ && \
     cd /tmp/ngx_waf && make
    
