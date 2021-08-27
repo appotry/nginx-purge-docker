@@ -54,7 +54,6 @@ RUN cd /tmp && \
     git clone https://github.com/ADD-SP/ngx_waf.git && \
     git clone -b lts https://github.com/ADD-SP/ngx_waf.git && \
     export LIB_UTHASH=/tmp/uthash && \
-    cd /tmp/ngx_waf && git clone https://github.com/libinjection/libinjection.git inc/libinjection && \
     cd /tmp/ngx_waf && make
    
        
