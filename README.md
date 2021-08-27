@@ -15,11 +15,12 @@ waf_under_attack on uri=/under-attack.html; # 配置5秒盾
 wget https://raw.githubusercontent.com/ADD-SP/ngx_waf/master/assets/under-attack.html -o /www/wwwroot/rn.vsvs.xyz
 ```
 
-# 增加brotli 支持
+# 增加[brotli](https://github.com/google/ngx_brotli) 支持
 在nginx配置文件中增加
 ```yaml
     brotli on;
     brotli_comp_level 6; 
+    brotli_static on;
     brotli_types
         text/css
         text/plain
