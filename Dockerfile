@@ -18,6 +18,8 @@ RUN apt-get update && \
       git \
       flex \
       bison \
+      libsodium23 \
+      libsodium-dev \
       zlib1g-dev \
       build-essential \
       libssl-dev \
