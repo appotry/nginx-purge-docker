@@ -51,7 +51,9 @@ RUN cd /tmp && \
     
 RUN cd /tmp && \
     git clone https://github.com/ADD-SP/ngx_waf.git && \
-    cd /tmp/ngx_waf && make
+    git clone https://github.com/troydhanson/uthash.git && \
+    export LIB_UTHASH=/tmp/uthash
+    cd /tmp/ngx_waf && make 
    
        
 # configure and build
