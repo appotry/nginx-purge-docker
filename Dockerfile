@@ -49,7 +49,9 @@ RUN NGINX_VERSION=`nginx -V 2>&1 | grep "nginx version" | awk -F/ '{ print $2}'`
 RUN cd /tmp && \
     git clone https://github.com/google/ngx_brotli.git && \
     cd /tmp/ngx_brotli && git submodule update --init
-    
+
+RUN ls /usr/include/ut*
+
 RUN cd /tmp && \
     git clone -b lts https://github.com/ADD-SP/ngx_waf.git && \
     git clone https://github.com/troydhanson/uthash.git && \
