@@ -51,7 +51,7 @@ RUN cd /tmp && \
     
 RUN cd /tmp && \
     git clone https://github.com/ADD-SP/ngx_waf.git && \
-    ls /tmp
+    cd /tmp/ngx_waf && make
    
        
 # configure and build
