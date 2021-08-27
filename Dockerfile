@@ -51,7 +51,6 @@ RUN cd /tmp && \
     cd /tmp/ngx_brotli && git submodule update --init
     
 RUN cd /tmp && \
-    git clone https://github.com/ADD-SP/ngx_waf.git && \
     git clone -b lts https://github.com/ADD-SP/ngx_waf.git && \
     export LIB_UTHASH=/tmp/uthash && \
     cd /tmp/ngx_waf && make
