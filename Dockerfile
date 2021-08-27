@@ -16,9 +16,6 @@ RUN apt-get update && \
     apt-get install --no-install-recommends --no-install-suggests -y \
       wget \
       git \
-      uthash-dev \
-      libsodium \
-      libsodium-dev \
       flex \
       bison \
       zlib1g-dev \
@@ -58,6 +55,11 @@ RUN cd /tmp && \
     git clone -b lts https://github.com/ADD-SP/ngx_waf.git && \
     git clone https://github.com/troydhanson/uthash.git && \
     git clone https://github.com/libinjection/libinjection.git && \
+    git clone https://github.com/jedisct1/libsodium.git --branch stable libsodium-src && \
+    cd /tmp/libsodium-src && \
+    ./configure --prefix=/tmp/nginx/libsodium --with-pic && \
+    make -j$(nproc) && make check -j $(nproc) && make install && \
+    export LIB_SODIUM=/tmp/nginx/libsodium && \
     cp libinjection /tmp/ngx_waf/inc/libinjection -r && \
     cp /tmp/uthash/src/* /usr/include/ && \
     cd /tmp/ngx_waf && make
