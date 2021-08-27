@@ -16,6 +16,7 @@ RUN apt-get update && \
     apt-get install --no-install-recommends --no-install-suggests -y \
       wget \
       git \
+      uthash-devel \
       flex \
       bison \
       zlib1g-dev \
@@ -51,8 +52,6 @@ RUN cd /tmp && \
     
 RUN cd /tmp && \
     git clone https://github.com/ADD-SP/ngx_waf.git && \
-    git clone https://github.com/troydhanson/uthash.git && \
-    export LIB_UTHASH=/tmp/uthash/src && \
     cd /tmp/ngx_waf && make
    
        
