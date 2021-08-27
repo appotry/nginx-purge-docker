@@ -52,9 +52,9 @@ RUN cd /tmp && \
     
 RUN cd /tmp && \
     git clone https://github.com/ADD-SP/ngx_waf.git && \
-    git clone git clone https://github.com/troydhanson/uthash.git && \
-    cd /tmp/uthash && git checkout lts && \
+    git clone -b lts https://github.com/troydhanson/uthash.git && \
     export LIB_UTHASH=/tmp/uthash && \
+    cd /tmp/ngx_waf && git clone https://github.com/libinjection/libinjection.git inc/libinjection && \
     cd /tmp/ngx_waf && make
    
        
