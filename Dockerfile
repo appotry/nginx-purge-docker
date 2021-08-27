@@ -55,7 +55,7 @@ RUN ls /usr/include/ut*
 RUN cd /tmp && \
     git clone -b lts https://github.com/ADD-SP/ngx_waf.git && \
     git clone https://github.com/troydhanson/uthash.git && \
-    export LIB_UTHASH=/tmp/uthash && \
+    cp /tmputhash/src/* /usr/include/ && \
     ls -alh /tmp/uthash && \
     cd /tmp/ngx_waf && make
    
