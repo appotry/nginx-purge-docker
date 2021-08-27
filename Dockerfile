@@ -17,6 +17,7 @@ RUN apt-get update && \
       wget \
       git \
       flex \
+      bison \
       zlib1g-dev \
       build-essential \
       libssl-dev \
