@@ -17,7 +17,7 @@ wget https://raw.githubusercontent.com/ADD-SP/ngx_waf/master/assets/under-attack
 
 # 增加[brotli](https://github.com/google/ngx_brotli) 支持
 在nginx配置文件中增加
-```yaml
+```nginx
     brotli on;
     brotli_comp_level 6; 
     brotli_static on;
