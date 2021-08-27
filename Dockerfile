@@ -17,6 +17,8 @@ RUN apt-get update && \
       wget \
       git \
       uthash-dev \
+      libsodium \
+      libsodium-dev \
       flex \
       bison \
       zlib1g-dev \
