@@ -47,7 +47,7 @@ RUN cd /tmp && \
     git clone https://github.com/google/ngx_brotli.git && \
     cd /tmp/ngx_brotli && git submodule update --init
     
-RUN cd /tmp && \
+RUN cd /tmp && ls && \
     git clone https://github.com/ADD-SP/ngx_waf.git && \
     cd /tmp/ngx_waf && git submodule update --init
    
