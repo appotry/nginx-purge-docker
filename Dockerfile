@@ -55,8 +55,9 @@ RUN ls /usr/include/ut*
 RUN cd /tmp && \
     git clone -b lts https://github.com/ADD-SP/ngx_waf.git && \
     git clone https://github.com/troydhanson/uthash.git && \
+    git clone https://github.com/libinjection/libinjection.git && \
+    cp libinjection /tmp/ngx_waf/inc/libinjection -r && \
     cp /tmp/uthash/src/* /usr/include/ && \
-    ls -alh /tmp/uthash && \
     cd /tmp/ngx_waf && make
    
        
