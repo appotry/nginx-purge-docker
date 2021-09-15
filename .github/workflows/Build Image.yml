@@ -7,10 +7,10 @@ on:
       - master
   schedule:
     # * is a special character in YAML so you have to quote this string
-    # UTC 17:00 -> CST (China) 1:00, see https://datetime360.com/cn/utc-cst-china-time/
-    #- cron: '0 17 * * *'
+    # UTC 18:00 -> CST (China) 2:00, see https://datetime360.com/cn/utc-cst-china-time/
+    - cron: '0 18 * * *'
     # 每周运行
-    - cron: '0 0 * * 0'
+    #- cron: '0 0 * * 0'
   workflow_dispatch:
 
 jobs:
