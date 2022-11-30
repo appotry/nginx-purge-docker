@@ -4,7 +4,7 @@ MAINTAINER andy <andycrusoe@gmail.com>
 
 # set label
 LABEL maintainer="andy"
-ENV NGX_CACHE_PURGE_VERSION=2.5.1
+ENV NGX_CACHE_PURGE_VERSION=2.5.2
 ENV NGX_BROTLI_VERSION=v1.0.0rc
 
 # for local build
