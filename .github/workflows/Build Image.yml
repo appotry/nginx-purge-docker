@@ -37,19 +37,16 @@ jobs:
       - name: Set Version
         id: set-version
         run: |
-          echo "::set-output name=version::$(date +"%y-%m-%d")"
-          echo $(date +"%y-%m-%d")
-          echo "::set-output name=status::success"
+          echo "version=`date +'%y-%m-%d'`" >> $GITHUB_ENV
           
       # Build and push
       - name: Build dockerfile
-        if: steps.set-version.outputs.status == 'success'
         uses: docker/build-push-action@v3
         with:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           push: true
           tags: |
-            bloodstar/nginx-purge:stable-${{ steps.set-version.outputs.version }}
+            bloodstar/nginx-purge:stable-${{ env.version }}
             bloodstar/nginx-purge:latest
 
