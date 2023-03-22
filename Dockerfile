@@ -53,6 +53,7 @@ RUN cd /tmp && \
 
 RUN ls /usr/include/ut*
 
+# https://docs.addesp.com/ngx_waf/zh-cn/
 RUN cd /tmp && \
     git clone -b lts https://github.com/ADD-SP/ngx_waf.git && \
     git clone https://github.com/troydhanson/uthash.git && \
