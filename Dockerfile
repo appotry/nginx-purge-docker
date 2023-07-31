@@ -69,9 +69,16 @@ RUN ls /usr/include/ut*
    
        
 # configure and build
+# RUN cd /tmp/nginx && \
+#     BASE_CONFIGURE_ARGS=`nginx -V 2>&1 | grep "configure arguments" | cut -d " " -f 3-` && \
+#     /bin/sh -c "./configure ${BASE_CONFIGURE_ARGS} --add-module=/tmp/ngx_cache_purge --add-module=/tmp/ngx_brotli --add-module=/tmp/ngx_waf" && \
+#     make && make install && \
+#     rm -rf /tmp/nginx*
+
+# configure and build
 RUN cd /tmp/nginx && \
     BASE_CONFIGURE_ARGS=`nginx -V 2>&1 | grep "configure arguments" | cut -d " " -f 3-` && \
-    /bin/sh -c "./configure ${BASE_CONFIGURE_ARGS} --add-module=/tmp/ngx_cache_purge --add-module=/tmp/ngx_brotli --add-module=/tmp/ngx_waf" && \
+    /bin/sh -c "./configure ${BASE_CONFIGURE_ARGS} --add-module=/tmp/ngx_cache_purge --add-module=/tmp/ngx_brotli" && \
     make && make install && \
     rm -rf /tmp/nginx*
     
