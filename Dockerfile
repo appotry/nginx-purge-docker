@@ -54,18 +54,18 @@ RUN cd /tmp && \
 RUN ls /usr/include/ut*
 
 # https://docs.addesp.com/ngx_waf/zh-cn/
-RUN cd /tmp && \
-    git clone -b lts https://github.com/ADD-SP/ngx_waf.git && \
-    git clone https://github.com/troydhanson/uthash.git && \
-    git clone https://github.com/libinjection/libinjection.git && \
-    git clone https://github.com/jedisct1/libsodium.git --branch stable libsodium-src && \
-    cd /tmp/libsodium-src && \
-    ./configure --prefix=/tmp/nginx/libsodium --with-pic && \
-    make -j$(nproc) && make check -j $(nproc) && make install && \
-    export LIB_SODIUM=/tmp/nginx/libsodium && \
-    cp /tmp/libinjection /tmp/ngx_waf/inc/libinjection -r && \
-    cp /tmp/uthash/src/* /usr/include/ && \
-    cd /tmp/ngx_waf && make
+# RUN cd /tmp && \
+#     git clone -b lts https://github.com/ADD-SP/ngx_waf.git && \
+#     git clone https://github.com/troydhanson/uthash.git && \
+#     git clone https://github.com/libinjection/libinjection.git && \
+#     git clone https://github.com/jedisct1/libsodium.git --branch stable libsodium-src && \
+#     cd /tmp/libsodium-src && \
+#     ./configure --prefix=/tmp/nginx/libsodium --with-pic && \
+#     make -j$(nproc) && make check -j $(nproc) && make install && \
+#     export LIB_SODIUM=/tmp/nginx/libsodium && \
+#     cp /tmp/libinjection /tmp/ngx_waf/inc/libinjection -r && \
+#     cp /tmp/uthash/src/* /usr/include/ && \
+#     cd /tmp/ngx_waf && make
    
        
 # configure and build
