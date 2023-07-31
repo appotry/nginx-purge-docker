@@ -5,6 +5,8 @@ on:
     branches:
       - main
       - master
+  watch:
+    types: [started]
   schedule:
     # * is a special character in YAML so you have to quote this string
     # UTC 18:00 -> CST (China) 2:00, see https://datetime360.com/cn/utc-cst-china-time/
